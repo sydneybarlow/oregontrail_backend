@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def user_param
-    params.require(:user).permit(:name, :username, :password_digest)
+    params.require(:user).permit(:username, :password_digest)
   end
 
   def update
@@ -21,6 +21,10 @@ class UsersController < ApplicationController
 
   def destroy
     render json: User.find(params[:id]).destroy()
+  end
+
+  def check
+    
   end
 
 end
