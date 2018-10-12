@@ -24,7 +24,14 @@ class UsersController < ApplicationController
   end
 
   def check
-    
+    @user = User.find_by(username: params[:username])
+    if @user && @user.authenticate(params[:password])
+      payload = { user_id: @user.id }
+      token = encode(payload)
+      render json: { success: true, token: token }, status: :ok
+    else
+      render json: { error: true, success: false, failed: true }
+    end
   end
 
 end

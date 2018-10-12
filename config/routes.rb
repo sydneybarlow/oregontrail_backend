@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
+  post 'users/check', :to => 'users#check'
   resources :users
-  post 'users/check', to: 'users#check'
 end
