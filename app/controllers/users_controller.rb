@@ -8,7 +8,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    render json: User.create(user_param)
+    @user = User.create(user_params)
+    if @user.valid?
+      render json: { user: UserSerializer.new(@user) }, status: :created
+    else
+      render json: { error: 'failed to create user' }, status: :not_acceptable
+    end
   end
 
   def user_param
@@ -23,7 +28,7 @@ class UsersController < ApplicationController
     render json: User.find(params[:id]).destroy()
   end
 
-  def check
+  def login
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       payload = { user_id: @user.id }
@@ -32,6 +37,14 @@ class UsersController < ApplicationController
     else
       render json: { error: true, success: false, failed: true }
     end
+  end
+
+  def homepage
+    authorization = request.headers['Authorization']
+    token = authorization.split(' ')[1]
+    payload = decode(token)
+    user = User.find(payload['user_id'])
+    render json: { user: UserSerializer.new(user) }, status: :accepted
   end
 
 end
