@@ -12,7 +12,7 @@ class FamilyMembersController < ApplicationController
   end
 
   def family_member_param
-    params.require(:family_members).permit(:name, :health, :status)
+    params.require(:family_member).permit(:name, :health, :status)
   end
 
   def update

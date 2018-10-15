@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    # byebug
     if @user.valid?
       render json: { user: UserSerializer.new(@user) }, status: :created
     else
