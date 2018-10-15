@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
+    # byebug
     if @user.valid?
       render json: { user: UserSerializer.new(@user) }, status: :created
     else
@@ -16,12 +17,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def user_param
-    params.require(:user).permit(:username, :password_digest)
+  def user_params
+    params.permit(:name, :username, :password)
   end
 
   def update
-    render json: User.find_by_id(params[:id]).update(user_param)
+    render json: User.find_by_id(params[:id]).update(user_params)
   end
 
   def destroy
@@ -33,7 +34,11 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(params[:password])
       payload = { user_id: @user.id }
       token = encode(payload)
-      render json: { success: true, token: token }, status: :ok
+      render json: { success: true, token: token, user_info: {
+          name: @user.name,
+          username: @user.username
+        },
+      }, status: :ok
     else
       render json: { error: true, success: false, failed: true }
     end
