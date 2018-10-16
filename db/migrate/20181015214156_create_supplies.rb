@@ -1,9 +1,8 @@
 class CreateSupplies < ActiveRecord::Migration[5.2]
   def change
     create_table :supplies do |t|
-      t.integer :money
-      t.integer :poundsOfFood
-      t.integer :boxesOfAmmo
+      t.string :type
+      t.integer :amount
       t.timestamps
     end
   end
