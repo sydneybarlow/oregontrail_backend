@@ -1,3 +1,3 @@
 class SupplySerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :money, :poundsOfFood, :boxesOfAmmo
 end

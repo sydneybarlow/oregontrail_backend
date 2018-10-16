@@ -4,7 +4,6 @@ class CreateSupplies < ActiveRecord::Migration[5.2]
       t.integer :money
       t.integer :poundsOfFood
       t.integer :boxesOfAmmo
-
       t.timestamps
     end
   end

@@ -1,3 +1,4 @@
 class Supply < ApplicationRecord
-  belongs_to :user
+  has_one :spec
+  has_one :user, through: :specs
 end
