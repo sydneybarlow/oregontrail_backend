@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.permit(:name, :username, :password)
+    params.permit(:name, :username, :password, :money, :miles)
   end
 
   def update
@@ -37,6 +37,8 @@ class UsersController < ApplicationController
           id: @user.id,
           name: @user.name,
           username: @user.username,
+          money: @user.money,
+          miles: @user.miles,
           family_members: [],
           supplies: [],
         },
