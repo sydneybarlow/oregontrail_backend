@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2018_10_15_214156) do
 
   create_table "family_members", force: :cascade do |t|
     t.integer "user_id"
+    t.string "role"
     t.string "name"
     t.string "health"
     t.string "status"
