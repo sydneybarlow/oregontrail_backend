@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2018_10_20_203958) do
     t.string "password_digest"
     t.integer "money"
     t.integer "miles"
+    t.integer "days"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

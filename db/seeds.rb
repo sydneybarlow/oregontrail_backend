@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-syd = User.create(id: 1, name: 'Sydney', username: 'sydbid', password: '123', money: 1000, miles: 1795)
+syd = User.create(id: 1, name: 'Sydney', username: 'sydbid', password: '123', money: 1000, miles: 1795, days: 0)
 
 jed = FamilyMember.create(id: 1, name: 'Jedediah', health: 'good', status: 'alive', user_id: syd.id, role: 'pops')
 jacob = FamilyMember.create(id: 2, name: 'Jacob', health: 'good', status: 'alive', user_id: syd.id, role: 'boy')
