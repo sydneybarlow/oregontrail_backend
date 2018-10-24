@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.valid?
+      @user.create_events
       payload = { user_id: @user.id }
       token = encode(payload)
       render json: { user: UserSerializer.new(@user), token: token }, status: :created
@@ -23,7 +24,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    render json: User.find_by_id(params[:id]).update(user_params)
+    @user = User.find_by_id(params[:id])
+    @user.update(user_params)
+    render json: @user
   end
 
   def destroy
@@ -43,7 +46,7 @@ class UsersController < ApplicationController
           days: @user.days,
           miles: @user.miles,
           family_members: [],
-          supplies: [],
+          supplies: []
         },
       }, status: :ok
     else
