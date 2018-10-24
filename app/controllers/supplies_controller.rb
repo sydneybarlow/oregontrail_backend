@@ -8,11 +8,11 @@ class SuppliesController < ApplicationController
   end
 
   def create
-    supply_param.map {|supply| Supply.create(name: supply[:name], amount: supply[:amount])}
+    render json: supply_param.map {|supply| Supply.create!(name: supply[:name], amount: supply[:amount], user_id: supply[:user_id])}
   end
 
   def supply_param
-    params[:supply].map {|x| x.permit(:name, :amount).to_h}
+    params[:supply].map {|x| x.permit(:name, :amount, :user_id).to_h}
   end
 
   def update

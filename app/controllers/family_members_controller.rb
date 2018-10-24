@@ -8,11 +8,11 @@ class FamilyMembersController < ApplicationController
   end
 
   def create
-    render json: FamilyMember.create(family_member_param)
+    render json: family_member_param.map {|family| FamilyMember.create!(name: family[:name], user_id: family[:user_id])}
   end
 
   def family_member_param
-    params.require(:family_member).permit(:name, :health, :status, :role)
+    params[:family_member].map {|x| x.permit(:name, :user_id).to_h}
   end
 
   def update
