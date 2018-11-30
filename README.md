@@ -17,3 +17,11 @@ As the user travels, the user can hunt to earn more supplies for his/her family 
 When the user makes it to Oregon City, Oregon it iniciates a 'Game Over' and the game starts over from the beginning. A future improvement is that the user can then go back and make their family again and purchase supplies again so that they may play the game with a fresh start.
 
 --------------------------------------------------------------------------------------------------------------------
+
+The models are Users, Events, Supplies, and Family Members. 
+
+(Just to explain - Events are all of the random occurances that can happen to the family as they travel across the plains)
+
+Events, Supplies and Family Members are all related to Users, which is the single source of truth here.
+
+Whenever a User is made, it also creates all of the Events that are needed for the game. Events are created once the User is created. 
